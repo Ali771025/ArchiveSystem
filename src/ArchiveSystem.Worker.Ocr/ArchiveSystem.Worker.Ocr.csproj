@@ -1,0 +1,46 @@
+<!-- src/ArchiveSystem.Worker.Ocr/ArchiveSystem.Worker.Ocr.csproj -->
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.0" />
+
+    <PackageReference Include="MassTransit" Version="8.5.2" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.2" />
+
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageReference Include="RapidOcrNet" Version="3.0.0" />
+    <PackageReference Include="PDFtoImage" Version="5.3.0" />
+    <PackageReference Include="PdfPig" Version="0.1.15" />
+    <!-- Pin the locally provisioned Linux runtime asset. PDFtoImage requires
+         4.150.1 or newer, and 4.151.1 is available in the Windows NuGet cache. -->
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.151.1" />
+    <!-- PDFtoImage uses SkiaSharp 4.150.1. Exclude RapidOcrNet's older Linux native
+         asset so Linux publishes contain one managed/native Skia version. -->
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.119.1" ExcludeAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArchiveSystem.Domain\ArchiveSystem.Domain.csproj" />
+    <ProjectReference Include="..\ArchiveSystem.Application\ArchiveSystem.Application.csproj" />
+    <ProjectReference Include="..\ArchiveSystem.Infrastructure\ArchiveSystem.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="models/persian-v5/**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

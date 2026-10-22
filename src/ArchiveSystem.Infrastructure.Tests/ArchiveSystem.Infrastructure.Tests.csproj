@@ -1,0 +1,33 @@
+<!-- src/ArchiveSystem.Infrastructure.Tests/ArchiveSystem.Infrastructure.Tests.csproj -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RollForward>Major</RollForward>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.15" />
+
+    <PackageReference Include="Moq" Version="4.20.72" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArchiveSystem.Infrastructure\ArchiveSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\ArchiveSystem.Domain\ArchiveSystem.Domain.csproj" />
+    <ProjectReference Include="..\ArchiveSystem.Presentation.Api\ArchiveSystem.Presentation.Api.csproj" />
+    <ProjectReference Include="..\ArchiveSystem.Worker.Ocr\ArchiveSystem.Worker.Ocr.csproj" />
+  </ItemGroup>
+
+</Project>

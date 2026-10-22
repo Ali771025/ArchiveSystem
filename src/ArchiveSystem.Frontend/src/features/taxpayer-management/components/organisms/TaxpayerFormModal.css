@@ -1,0 +1,65 @@
+#taxpayer-form,
+.taxpayer-form-title,
+.taxpayer-form-content {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.taxpayer-form-title,
+.taxpayer-form-title .MuiTypography-root,
+.taxpayer-form-content,
+.taxpayer-form-content .MuiTypography-root {
+  text-align: right !important;
+}
+
+#taxpayer-form,
+#taxpayer-form .MuiFormControl-root,
+#taxpayer-form .MuiInputBase-root,
+#taxpayer-form .MuiOutlinedInput-root {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+#taxpayer-form input,
+#taxpayer-form textarea,
+#taxpayer-form .MuiInputBase-input,
+#taxpayer-form .MuiOutlinedInput-input,
+#taxpayer-form .taxpayer-rtl-field input,
+#taxpayer-form .taxpayer-rtl-field textarea,
+#taxpayer-form .taxpayer-rtl-field .MuiInputBase-input {
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: plaintext !important;
+}
+
+#taxpayer-form input::placeholder,
+#taxpayer-form textarea::placeholder {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+#taxpayer-form .MuiInputLabel-root {
+  right: 14px !important;
+  left: auto !important;
+  direction: rtl !important;
+  text-align: right !important;
+  transform-origin: top right !important;
+  max-width: calc(100% - 28px) !important;
+}
+
+#taxpayer-form .MuiInputLabel-root.MuiInputLabel-shrink {
+  transform: translate(0, -9px) scale(0.75) !important;
+}
+
+#taxpayer-form .MuiFormHelperText-root,
+#taxpayer-form .MuiFormLabel-root,
+#taxpayer-form .MuiFormControlLabel-label,
+#taxpayer-form .MuiSelect-select {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+#taxpayer-form .MuiFormHelperText-root {
+  margin-right: 14px !important;
+  margin-left: 0 !important;
+}

@@ -1,0 +1,749 @@
+:root {
+  color-scheme: light;
+  font-family: "Vazirmatn", "Tahoma", "Segoe UI";
+  --layout-gutter: 0.625rem;
+  --layout-gutter-lg: 1.25rem;
+  --dialog-edge-gap: 0.5rem;
+  --touch-target-size: 2.75rem;
+  --app-font-size: 0.94rem;
+  --page-max-width: 100%;
+  --content-inline-padding: clamp(0.625rem, 2vw, 1.5rem);
+  --app-bg: #f3f6fa;
+  --app-surface: #ffffff;
+  --app-surface-muted: #f8fafc;
+  --app-text: #0b1320;
+  --app-text-muted: #475569;
+  --app-border: rgba(15, 23, 42, 0.12);
+  --app-focus: #14b8a6;
+  background-color: #f3f6fa;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --app-bg: #1f2937;
+  --app-surface: #273549;
+  --app-surface-muted: #111827;
+  --app-text: #f9fafb;
+  --app-text-muted: #cbd5e1;
+  --app-border: rgba(203, 213, 225, 0.18);
+  --app-focus: #14b8a6;
+  background-color: #1f2937;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  direction: rtl;
+}
+
+.MuiDataGrid-root,
+.MuiDataGrid-main,
+.MuiDataGrid-columnHeaders,
+.MuiDataGrid-virtualScroller,
+.MuiDataGrid-footerContainer {
+  direction: rtl !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  font-size: var(--app-font-size);
+  line-height: 1.5;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  overscroll-behavior-y: none;
+}
+
+html[data-theme="dark"] body {
+  background-color: #1f2937;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.app-content {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable both-edges;
+}
+
+.table-scroll > * {
+  min-width: max(100%, 42rem);
+}
+
+.archive-jalali-date-container {
+  width: 100%;
+}
+
+.archive-jalali-date-container .archive-jalali-date-input {
+  width: 100%;
+  min-height: var(--touch-target-size);
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(247, 250, 249, 0.94)
+    ),
+    #fff;
+  color: #10201f;
+  font: inherit;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  direction: ltr;
+  text-align: center;
+  letter-spacing: 0.025em;
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 1px 2px rgba(15, 23, 42, 0.04);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.archive-jalali-date-container .archive-jalali-date-input:hover {
+  border-color: rgba(15, 118, 110, 0.42);
+}
+
+.archive-jalali-date-container .archive-jalali-date-input:focus {
+  border-color: #0f766e;
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.2),
+    0 8px 18px rgba(15, 118, 110, 0.08);
+}
+
+.archive-jalali-date-container .archive-jalali-date-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.64;
+}
+
+.archive-jalali-calendar.rmdp-wrapper {
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1.25rem 3rem rgba(15, 23, 42, 0.16);
+}
+
+.archive-jalali-calendar .rmdp-calendar {
+  padding: 0.75rem;
+}
+
+.archive-jalali-calendar .rmdp-header-values {
+  color: #0f4f4a;
+  font-weight: 700;
+}
+
+.archive-jalali-calendar .rmdp-week-day {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.archive-jalali-calendar .rmdp-day span {
+  border-radius: 0.65rem;
+}
+
+.archive-jalali-calendar
+  .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden)
+  span:hover {
+  background-color: rgba(15, 118, 110, 0.1);
+  color: #0b4f4a;
+}
+
+.archive-jalali-calendar .rmdp-day.rmdp-selected span,
+.archive-jalali-calendar .rmdp-day.rmdp-today.rmdp-selected span {
+  background-color: #0f766e;
+  box-shadow: 0 0.45rem 1rem rgba(15, 118, 110, 0.22);
+}
+
+.archive-jalali-calendar .rmdp-day.rmdp-today span {
+  background-color: rgba(245, 158, 11, 0.16);
+  color: #92400e;
+}
+
+html[data-theme="dark"]
+  .archive-jalali-date-container
+  .archive-jalali-date-input {
+  border-color: rgba(45, 212, 191, 0.24);
+  background:
+    linear-gradient(180deg, rgba(17, 24, 39, 0.98), rgba(15, 23, 42, 0.96)),
+    #111827;
+  color: #e5edf0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"]
+  .archive-jalali-date-container
+  .archive-jalali-date-input:hover {
+  border-color: rgba(45, 212, 191, 0.48);
+}
+
+html[data-theme="dark"]
+  .archive-jalali-date-container
+  .archive-jalali-date-input:focus {
+  border-color: #2dd4bf;
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.18),
+    0 10px 22px rgba(0, 0, 0, 0.28);
+}
+
+html[data-theme="dark"] .archive-jalali-calendar.rmdp-wrapper {
+  border-color: rgba(45, 212, 191, 0.18);
+  background-color: #111827;
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-calendar,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-top-class {
+  background-color: #111827;
+  color: #e5edf0;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-header-values,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-arrow {
+  color: #5eead4;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-week-day {
+  color: #2dd4bf;
+}
+
+html[data-theme="dark"]
+  .archive-jalali-calendar
+  .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden)
+  span:hover {
+  background-color: rgba(45, 212, 191, 0.14);
+  color: #ccfbf1;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-day.rmdp-today span {
+  background-color: rgba(251, 191, 36, 0.16);
+  color: #fde68a;
+}
+
+/* Prevent long Farsi/Latin identifiers from breaking layouts on narrow screens. */
+p,
+span,
+td,
+th,
+.MuiTypography-root {
+  overflow-wrap: anywhere;
+}
+
+.responsive-card-view {
+  display: block;
+}
+
+.responsive-table-view {
+  display: none;
+}
+
+@media (max-width: 374px) {
+  :root {
+    --layout-gutter: 0.5rem;
+    --dialog-edge-gap: 0.4rem;
+    --touch-target-size: 2.625rem;
+    --app-font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 375px) {
+  :root {
+    --layout-gutter: 0.625rem;
+    --dialog-edge-gap: 0.5rem;
+    --touch-target-size: 2.75rem;
+    --app-font-size: 0.93rem;
+  }
+}
+
+@media (min-width: 480px) {
+  :root {
+    --layout-gutter: 0.75rem;
+    --dialog-edge-gap: 0.625rem;
+    --app-font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --layout-gutter: 1rem;
+    --dialog-edge-gap: 0.75rem;
+    --touch-target-size: 2.625rem;
+    --app-font-size: 0.97rem;
+  }
+
+  .responsive-card-view {
+    display: none;
+  }
+
+  .responsive-table-view {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --layout-gutter: var(--layout-gutter-lg);
+    --dialog-edge-gap: 1rem;
+    --app-font-size: 0.99rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --page-max-width: 80rem;
+    --app-font-size: 1rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --page-max-width: 90rem;
+    --app-font-size: 1.02rem;
+  }
+
+  body {
+    font-size: var(--app-font-size);
+  }
+}
+
+@media (max-width: 767px) {
+  .table-scroll > * {
+    min-width: 100%;
+  }
+
+  .MuiDialog-paper:not(.MuiDialog-paperFullScreen) {
+    width: calc(
+      100% -
+        (
+          max(var(--dialog-edge-gap), env(safe-area-inset-left)) +
+            max(var(--dialog-edge-gap), env(safe-area-inset-right))
+        )
+    );
+    max-width: calc(
+      100% -
+        (
+          max(var(--dialog-edge-gap), env(safe-area-inset-left)) +
+            max(var(--dialog-edge-gap), env(safe-area-inset-right))
+        )
+    );
+    max-height: calc(
+      100dvh -
+        (
+          max(var(--dialog-edge-gap), env(safe-area-inset-top)) +
+            max(var(--dialog-edge-gap), env(safe-area-inset-bottom))
+        )
+    );
+    margin: max(var(--dialog-edge-gap), env(safe-area-inset-top))
+      max(var(--dialog-edge-gap), env(safe-area-inset-right))
+      max(var(--dialog-edge-gap), env(safe-area-inset-bottom))
+      max(var(--dialog-edge-gap), env(safe-area-inset-left));
+  }
+
+  .MuiDialogContent-root {
+    padding: 0.875rem !important;
+  }
+
+  .MuiDialogActions-root {
+    padding: 0.5rem 0.875rem 0.875rem !important;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .MuiDialogActions-root > .MuiButton-root {
+    min-height: var(--touch-target-size);
+    flex: 0 0 auto;
+  }
+
+  .MuiButton-root,
+  .MuiIconButton-root,
+  .MuiInputBase-root {
+    min-height: var(--touch-target-size);
+  }
+
+  .MuiDataGrid-root {
+    font-size: 0.82rem;
+  }
+
+  .MuiDataGrid-cell,
+  .MuiDataGrid-columnHeader {
+    padding-inline: 0.375rem;
+  }
+
+  .MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+    white-space: normal;
+    line-height: 1.2;
+  }
+}
+
+/* Access-control UI refinements */
+.access-rbac-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.access-rbac-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 4px;
+  border-radius: 1rem 1rem 0 0;
+  background: linear-gradient(90deg, #0f766e, #14b8a6);
+}
+
+.access-rbac-grid {
+  align-items: stretch;
+}
+
+.access-rbac-group {
+  transition:
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+.access-rbac-group:hover {
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.access-rbac-permission-item {
+  min-height: 4.25rem;
+}
+
+.access-rbac-permission-key {
+  display: inline-block;
+  padding: 0.12rem 0.4rem;
+  border-radius: 9999px;
+  background-color: var(--app-surface-muted);
+  color: var(--app-text-muted);
+  letter-spacing: 0.01em;
+}
+
+.MuiTab-root {
+  font-weight: 700 !important;
+}
+
+.MuiSelect-select {
+  min-height: 1.25rem;
+}
+
+@media (max-width: 767px) {
+  .access-rbac-permission-item {
+    min-height: 3.75rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .table-scroll > * {
+    min-width: max(100%, 50rem);
+  }
+
+  .MuiDialog-paper:not(.MuiDialog-paperFullScreen) {
+    width: min(92vw, 50rem);
+  }
+}
+
+@media (max-width: 1023px) {
+  .MuiContainer-root {
+    padding-inline: var(--content-inline-padding);
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  :root {
+    --touch-target-size: 2.5rem;
+  }
+
+  .MuiDialogContent-root {
+    max-height: 58dvh;
+    overflow-y: auto;
+  }
+}
+/* Safer opt-in utilities to avoid global MUI layout regressions. */
+.fit-content-fields .MuiTextField-root,
+.fit-content-fields .MuiFormControl-root {
+  width: auto;
+  min-width: 11.25rem;
+  max-width: 100%;
+}
+
+.fit-content-fields .MuiInputBase-root {
+  width: auto;
+}
+
+.fit-content-fields .MuiChip-root {
+  width: auto;
+  max-width: fit-content;
+}
+
+.wrap-fields {
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ردیف فیلترها */
+.wrap-fields {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 16px;
+  align-items: end;
+  width: 100%;
+}
+
+.wrap-fields > * {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+/* wrapper فیلد تاریخ */
+.jalali-date-field {
+  width: 100%;
+  min-width: 0;
+}
+
+/* اگر inputClassName واقعاً روی input اصلی اعمال شود */
+.jalali-date-real-input {
+  width: 100% !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--app-border) !important;
+  border-radius: 8px !important;
+  background: var(--app-surface) !important;
+  color: var(--app-text) !important;
+  padding: 0 12px !important;
+  font-size: 14px !important;
+  line-height: 40px !important;
+  text-align: right !important;
+  direction: rtl !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.jalali-date-real-input:focus {
+  border-color: var(--app-focus) !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12) !important;
+}
+
+/* هم‌شکل کردن MUI */
+.wrap-fields .MuiFormControl-root,
+.wrap-fields .MuiTextField-root {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.wrap-fields .MuiInputBase-root,
+.wrap-fields .MuiOutlinedInput-root {
+  height: 40px !important;
+  min-height: 40px !important;
+  border-radius: 8px !important;
+  background-color: var(--app-surface) !important;
+  color: var(--app-text) !important;
+}
+
+.wrap-fields .MuiInputBase-input {
+  height: 40px !important;
+  box-sizing: border-box !important;
+  padding: 0 12px !important;
+  text-align: right !important;
+}
+
+.taxpayer-rtl-form .MuiInputBase-root,
+.taxpayer-rtl-form .MuiOutlinedInput-root,
+.taxpayer-rtl-form .MuiFormControl-root {
+  direction: rtl !important;
+}
+
+.taxpayer-rtl-form input,
+.taxpayer-rtl-form textarea,
+.taxpayer-rtl-form .MuiInputBase-input,
+.taxpayer-rtl-field input,
+.taxpayer-rtl-field textarea,
+.taxpayer-rtl-field .MuiInputBase-input {
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: plaintext !important;
+}
+
+.taxpayer-rtl-form input[dir="ltr"],
+.taxpayer-rtl-form textarea[dir="ltr"],
+.taxpayer-rtl-form .MuiInputBase-input[dir="ltr"],
+.taxpayer-ltr-field input,
+.taxpayer-ltr-field textarea,
+.taxpayer-ltr-field .MuiInputBase-input {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.wrap-fields .MuiOutlinedInput-notchedOutline {
+  border-color: var(--app-border) !important;
+}
+
+.wrap-fields
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: var(--app-focus) !important;
+}
+
+/* Legacy Tailwind-style surfaces must follow the active application theme. */
+html[data-theme="dark"] .bg-white {
+  background-color: var(--app-surface) !important;
+}
+
+html[data-theme="dark"] .text-slate-900,
+html[data-theme="dark"] .text-slate-800,
+html[data-theme="dark"] .text-slate-700 {
+  color: var(--app-text) !important;
+}
+
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-slate-500 {
+  color: var(--app-text-muted) !important;
+}
+
+html[data-theme="dark"] .border-slate-200,
+html[data-theme="dark"] .border-gray-300 {
+  border-color: var(--app-border) !important;
+}
+
+/* برای popup تقویم */
+.rmdp-wrapper,
+.archive-jalali-calendar.rmdp-wrapper {
+  z-index: 9999 !important;
+}
+
+/* Dark-mode readability fixes for MUI overlays, reports, file grids, and Jalali calendar. */
+html[data-theme="dark"] .MuiPaper-root,
+html[data-theme="dark"] .MuiDialog-paper,
+html[data-theme="dark"] .MuiPopover-paper,
+html[data-theme="dark"] .MuiMenu-paper,
+html[data-theme="dark"] .MuiAutocomplete-paper {
+  background-image: none !important;
+}
+
+html[data-theme="dark"] .MuiDataGrid-root {
+  background-color: var(--app-surface) !important;
+  color: var(--app-text) !important;
+  border-color: var(--app-border) !important;
+}
+
+html[data-theme="dark"] .MuiDataGrid-columnHeaders,
+html[data-theme="dark"] .MuiDataGrid-columnHeader,
+html[data-theme="dark"] .MuiDataGrid-pinnedColumnHeaders {
+  background-color: var(--app-surface-muted) !important;
+  color: var(--app-text) !important;
+}
+
+html[data-theme="dark"] .MuiDataGrid-cell,
+html[data-theme="dark"] .MuiDataGrid-footerContainer,
+html[data-theme="dark"] .MuiDataGrid-withBorderColor {
+  border-color: var(--app-border) !important;
+  color: var(--app-text) !important;
+}
+
+html[data-theme="dark"] .MuiDataGrid-row:hover {
+  background-color: rgba(45, 212, 191, 0.08) !important;
+}
+
+html[data-theme="dark"] .MuiAutocomplete-option,
+html[data-theme="dark"] .MuiAutocomplete-noOptions,
+html[data-theme="dark"] .MuiAutocomplete-loading {
+  color: var(--app-text) !important;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar.rmdp-wrapper,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-shadow,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-ym-picker,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-month-picker,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-year-picker,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-time-picker {
+  background-color: #111827 !important;
+  color: var(--app-text) !important;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-day,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-day span,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-day-picker span,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-ym-picker span,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-time-picker input {
+  color: var(--app-text) !important;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-day.rmdp-disabled span,
+html[data-theme="dark"]
+  .archive-jalali-calendar
+  .rmdp-day.rmdp-day-hidden
+  span {
+  color: rgba(167, 181, 188, 0.45) !important;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-day.rmdp-selected span,
+html[data-theme="dark"]
+  .archive-jalali-calendar
+  .rmdp-day.rmdp-today.rmdp-selected
+  span {
+  background-color: var(--app-focus) !important;
+  color: #062521 !important;
+}
+
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-arrow-container:hover,
+html[data-theme="dark"] .archive-jalali-calendar .rmdp-ym-picker span:hover {
+  background-color: rgba(45, 212, 191, 0.14) !important;
+  color: #ccfbf1 !important;
+}

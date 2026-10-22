@@ -1,0 +1,45 @@
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "dossierNumber": {
+        "type": "keyword"
+      },
+      "postalCode": {
+        "type": "keyword"
+      },
+      "fileName": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "createdAt": {
+        "type": "date"
+      },
+      "ocrText": {
+        "type": "text",
+        "analyzer": "persian"
+      },
+      "tags": {
+        "type": "keyword"
+      },
+      "owners": {
+        "type": "nested",
+        "properties": {
+          "firstName": {
+            "type": "text"
+          },
+          "lastName": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}
