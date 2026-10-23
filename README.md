@@ -10,6 +10,11 @@
 
 # ArchiveSystem
 
+<!-- project-contact:start -->
+**Work with Yosof Omrani:** [Email a project inquiry](mailto:aliomrani916@gmail.com) · **aliomrani916@gmail.com** · [Services & contact](https://ali771025.github.io/software-portfolio/en/contact/) · [Portfolio walkthrough](https://ali771025.github.io/software-portfolio/en/work/ArchiveSystem/)
+<!-- project-contact:end -->
+
+
 **An on-premises document and case management platform, connecting physical records with searchable digital workflows.**
 
 ArchiveSystem brings classification trees, case records, versioned files, dynamic metadata, access policies, and background document processing into one Persian-first workspace. This repository presents a compact, sanitized source snapshot with a standalone UI showcase and documented backend architecture.

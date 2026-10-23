@@ -1,5 +1,10 @@
 # آرشیو اسناد و پرونده‌ها — ArchiveSystem
 
+<!-- project-contact:start -->
+**درخواست پروژه و همکاری با یوسف عمرانی:** [ارسال ایمیل](mailto:aliomrani916@gmail.com) · **aliomrani916@gmail.com** · [خدمات و تماس](https://ali771025.github.io/software-portfolio/contact/) · [معرفی نمونه‌کار](https://ali771025.github.io/software-portfolio/work/ArchiveSystem/)
+<!-- project-contact:end -->
+
+
 [صفحه اصلی و تصاویر](../README.md) · [معماری](ARCHITECTURE.md) · [راهنمای اجرا](GETTING_STARTED.md)
 
 **یک نمونه‌کار نرم‌افزاری برای مدیریت اسناد و پرونده‌ها، با رابط فارسی و راست‌به‌چپ، بک‌اند .NET و پردازش پس‌زمینه.**
